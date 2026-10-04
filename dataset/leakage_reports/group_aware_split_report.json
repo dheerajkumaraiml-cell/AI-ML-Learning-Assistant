@@ -1,0 +1,19 @@
+{
+  "master_dataset": "dataset\\merged_dataset.jsonl",
+  "master_records": 37089,
+  "split_sizes": {
+    "train": 29673,
+    "validation": 3707,
+    "test": 3709
+  },
+  "ratios": {
+    "train": 0.9,
+    "validation": 0.05,
+    "test": 0.05
+  },
+  "random_seed": 42,
+  "similarity_threshold": 0.9,
+  "near_duplicate_groups": 763,
+  "total_groups": 36199,
+  "note": "This split was created by keeping near-duplicate groups inside a single dataset partition. The master dataset was not modified."
+}

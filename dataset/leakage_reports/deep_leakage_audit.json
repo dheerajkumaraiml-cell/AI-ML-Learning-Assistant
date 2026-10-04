@@ -1,0 +1,48 @@
+{
+  "configuration": {
+    "similarity_thresholds": [
+      0.98,
+      0.95,
+      0.9
+    ],
+    "ngram_range": [
+      3,
+      5
+    ],
+    "neighbors": 5,
+    "min_question_length": 20,
+    "max_reported_pairs": 1000
+  },
+  "dataset_sizes": {
+    "train": 33380,
+    "validation": 1854,
+    "test": 1855,
+    "total": 37089
+  },
+  "exact_overlap": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "near_duplicate_counts": {
+    "train_validation": {
+      "0.98": 0,
+      "0.95": 0,
+      "0.9": 0
+    },
+    "train_test": {
+      "0.98": 0,
+      "0.95": 0,
+      "0.9": 0
+    },
+    "validation_test": {
+      "0.98": 0,
+      "0.95": 0,
+      "0.9": 0
+    }
+  },
+  "status": {
+    "record_count_ok": true,
+    "exact_overlap_free": true
+  }
+}

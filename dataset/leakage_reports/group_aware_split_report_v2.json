@@ -1,0 +1,19 @@
+{
+  "master_dataset": "dataset\\merged_dataset.jsonl",
+  "master_records": 37089,
+  "split_sizes": {
+    "train": 31694,
+    "validation": 2730,
+    "test": 2665
+  },
+  "target_ratios": {
+    "train": 0.9,
+    "validation": 0.05,
+    "test": 0.05
+  },
+  "random_seed": 42,
+  "similarity_threshold": 0.9,
+  "near_duplicate_groups": 763,
+  "total_groups": 36199,
+  "master_dataset_modified": false
+}
