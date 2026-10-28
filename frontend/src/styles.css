@@ -1,0 +1,469 @@
+
+/* ========================================
+   1. Global styles
+======================================== */
+
+:root {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  color: #17233f;
+  background: #f4f7fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --text: #17233f;
+  --muted: #71809c;
+  --border: #e2e8f3;
+  --surface: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #f4f7fc;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* ========================================
+   2. Application layout
+======================================== */
+
+#root {
+  min-height: 100vh;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.app-header {
+  min-height: 82px;
+  padding: 16px 28px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #eaf1ff;
+  display: grid;
+  place-items: center;
+  font-size: 27px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 750;
+  letter-spacing: -0.5px;
+}
+
+.brand p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #52627d;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  background: #eab308;
+  border-radius: 50%;
+}
+
+/* ========================================
+   3. Three-column dashboard
+======================================== */
+
+.app-layout {
+  display: grid;
+  grid-template-columns: 225px minmax(0, 1fr) 290px;
+  gap: 18px;
+  padding: 18px;
+  min-height: calc(100vh - 82px);
+}
+
+.main-content {
+  min-width: 0;
+  min-height: 450px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.learning-sidebar {
+  min-width: 0;
+}
+
+/* ========================================
+   4. Left navigation sidebar
+======================================== */
+
+.sidebar {
+  min-width: 0;
+  background: #172743;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-title {
+  margin: 4px 10px 20px;
+  color: #aab8d0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sidebar button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #dce6f7;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.sidebar button:hover {
+  background: #263b5d;
+}
+
+.sidebar button.active {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 14px 10px 0;
+  color: #aab8d0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* ========================================
+   5. Chat window
+======================================== */
+
+.chat-window {
+  min-height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.welcome-message {
+  max-width: 720px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #f0f5ff;
+  border: 1px solid #e1eaff;
+}
+
+.welcome-message h2 {
+  margin: 0 0 10px;
+  font-size: 19px;
+}
+
+.welcome-message p {
+  margin: 0;
+  color: #52627d;
+  line-height: 1.7;
+}
+
+.message-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.message-avatar {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e6edff;
+  display: grid;
+  place-items: center;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 13px 16px;
+  border-radius: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.message-row.assistant .message-bubble {
+  background: #f2f5fa;
+}
+
+.message-row.user .message-bubble {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+/* ========================================
+   6. Chat input
+======================================== */
+
+.chat-input-area {
+  padding: 18px;
+  border-top: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.chat-input-form {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.chat-input-form textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  max-height: 160px;
+  resize: vertical;
+  padding: 13px 15px;
+  border: 1px solid #d8e1f0;
+  border-radius: 12px;
+  outline: none;
+  color: var(--text);
+}
+
+.chat-input-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #2563eb18;
+}
+
+.chat-input-form button,
+.section-placeholder button {
+  border: none;
+  border-radius: 11px;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 0 22px;
+  font-weight: 600;
+}
+
+.chat-input-form button:hover,
+.section-placeholder button:hover {
+  background: var(--primary-hover);
+}
+
+/* ========================================
+   7. Learning panel
+======================================== */
+
+.learning-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.learning-card {
+  padding: 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+}
+
+.learning-card h3 {
+  margin: 0 0 15px;
+  font-size: 15px;
+}
+
+.learning-card button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f7f9fe;
+  color: var(--text);
+  text-align: left;
+  line-height: 1.5;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.learning-card button:hover {
+  border-color: #b7cbff;
+  background: #edf3ff;
+}
+
+/* ========================================
+   8. Placeholder sections
+======================================== */
+
+.section-placeholder {
+  padding: 36px;
+}
+
+.section-placeholder h2 {
+  margin-top: 0;
+}
+
+.section-placeholder p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.section-placeholder button {
+  min-height: 44px;
+  padding: 12px 18px;
+}
+
+/* ========================================
+   9. Responsive layout
+======================================== */
+
+@media (max-width: 1100px) {
+  .app-layout {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+
+  .learning-sidebar {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 700px) {
+  .app-header {
+    padding: 14px 16px;
+    flex-wrap: wrap;
+  }
+
+  .brand h1 {
+    font-size: 17px;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .connection-status {
+    font-size: 11px;
+  }
+
+  .app-layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .sidebar {
+    padding: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .sidebar-title,
+  .sidebar-footer {
+    display: none;
+  }
+
+  .sidebar button {
+    width: auto;
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .learning-sidebar {
+    grid-column: auto;
+  }
+
+  .chat-messages {
+    padding: 16px;
+  }
+
+  .chat-input-area {
+    padding: 12px;
+  }
+
+  .chat-input-form {
+    gap: 8px;
+  }
+
+  .chat-input-form button {
+    padding: 0 14px;
+  }
+
+  .section-placeholder {
+    padding: 22px;
+  }
+}

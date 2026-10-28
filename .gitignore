@@ -1,0 +1,33 @@
+# Python virtual environments
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Model checkpoints and weights
+checkpoints/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# Logs
+*.log
+
+# Editor configuration
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
