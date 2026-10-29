@@ -35,7 +35,7 @@ export default function ChatWindow({
               🤖
             </div>
             <div className="message-bubble" aria-live="polite">
-              Preparing demo response...
+              Thinking...
             </div>
           </div>
         )}

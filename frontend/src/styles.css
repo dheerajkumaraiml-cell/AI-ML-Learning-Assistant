@@ -260,6 +260,7 @@ button {
 
 .message-bubble {
   max-width: 85%;
+  min-width: 0;
   padding: 13px 16px;
   border-radius: 14px;
   line-height: 1.7;
@@ -322,6 +323,11 @@ button {
 .chat-input-form button:hover,
 .section-placeholder button:hover {
   background: var(--primary-hover);
+}
+
+.chat-input-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* ========================================
@@ -389,7 +395,78 @@ button {
 }
 
 /* ========================================
-   9. Responsive layout
+   9. Markdown content in assistant messages
+======================================== */
+
+.message-bubble > :first-child {
+  margin-top: 0;
+}
+
+.message-bubble > :last-child {
+  margin-bottom: 0;
+}
+
+.message-bubble p {
+  margin: 0.5rem 0;
+}
+
+.message-bubble ul,
+.message-bubble ol {
+  padding-left: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.message-bubble li + li {
+  margin-top: 0.25rem;
+}
+
+.message-bubble h1,
+.message-bubble h2,
+.message-bubble h3 {
+  margin: 0.9rem 0 0.4rem;
+  line-height: 1.35;
+}
+
+.message-bubble pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  border-radius: 8px;
+  background: #172033;
+  color: #f1f5f9;
+  white-space: pre;
+}
+
+.message-bubble pre code {
+  font-family: Consolas, "Courier New", monospace;
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+.message-bubble :not(pre) > code {
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  background: rgba(100, 116, 139, 0.15);
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.message-bubble table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.message-bubble th,
+.message-bubble td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+/* ========================================
+   10. Responsive layout
 ======================================== */
 
 @media (max-width: 1100px) {
@@ -449,6 +526,10 @@ button {
 
   .chat-messages {
     padding: 16px;
+  }
+
+  .message-bubble {
+    max-width: calc(100% - 46px);
   }
 
   .chat-input-area {

@@ -30,4 +30,17 @@ checkpoints/
 
 # OS files
 .DS_Store
-Thumbs.db
+Thumbs.dbvenv/
+__pycache__/
+.env
+node_modules/
+checkpoints/
+*.pyc
+# Generated frontend archive
+frontend.zip
+
+# Accidentally saved Git output
+how --stat --oneline*
+
+# Generated evaluation output (review before committing selected results)
+results/

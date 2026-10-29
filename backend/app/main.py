@@ -1,8 +1,28 @@
-from fastapi import FastAPI
+
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-app = FastAPI(title="AI/ML Learning Assistant API", version="0.1.0")
+from app.services.model_service import ModelService
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    service = ModelService()
+    service.load()
+    app.state.model_service = service
+    yield
+    app.state.model_service = None
+
+
+app = FastAPI(
+    title="AI/ML Learning Assistant API",
+    version="0.2.0",
+    lifespan=lifespan,
+)
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173"],
@@ -17,11 +37,31 @@ class ChatRequest(BaseModel):
 
 
 @app.get("/health")
-def health():
-    return {"status": "ok"}
+def health(request: Request):
+    return {
+        "status": "ok",
+        "model_loaded": getattr(
+            request.app.state, "model_service", None
+        ) is not None,
+    }
 
 
 @app.post("/api/chat")
-def chat(request: ChatRequest):
-    # Model inference will be connected here.
-    return {"reply": "The API is ready. Model inference is not configured yet."}
+def chat(request: Request, body: ChatRequest):
+    if not body.message.strip():
+        raise HTTPException(
+            status_code=422,
+            detail="Message cannot be empty or whitespace only.",
+        )
+
+    service = request.app.state.model_service
+
+    try:
+        reply = service.generate(body.message.strip())
+        return {"reply": reply}
+    except Exception:
+        # Do not expose internal model or filesystem details to clients.
+        raise HTTPException(
+            status_code=500,
+            detail="Answer generation failed.",
+        )
